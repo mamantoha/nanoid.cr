@@ -1,5 +1,7 @@
 # nanoid.cr
 
+[![Build Status](http://img.shields.io/travis/mamantoha/nanoid.cr.svg?style=flat)](https://travis-ci.org/mamantoha/nanoid.cr)
+
 Crystal implementation of original NanoID https://github.com/ai/nanoid
 
 ## Installation
