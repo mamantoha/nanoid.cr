@@ -1,0 +1,15 @@
+name: nanoid
+version: 0.1.0
+
+authors:
+  - Anton Maminov <anton.maminov@gmail.com>
+description: |
+  Crystal implementation of Nanoid, secure URL-friendly unique ID generator
+
+targets:
+  nanoid:
+    main: src/nanoid.cr
+
+crystal: 0.24.1
+
+license: MIT
