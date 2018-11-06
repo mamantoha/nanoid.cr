@@ -5,16 +5,10 @@ require "uuid"
 n = 1_000_000
 alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-Benchmark.bm do |x|
+Benchmark.ips do |x|
   x.report("Nanoid.simple_generate(21)") do
     n.times do
-      Nanoid.generate(size: 21)
-    end
-  end
-
-  x.report("Nanoid.simple_generate(16)") do
-    n.times do
-      Nanoid.generate(size: 16)
+      Nanoid.generate
     end
   end
 
@@ -24,15 +18,29 @@ Benchmark.bm do |x|
     end
   end
 
-  x.report("Nanoid.complex_generate(16)") do
-    n.times do
-      Nanoid.generate(size: 16, alphabet: alphabet)
-    end
-  end
-
   x.report("Nanoid.non_secure_generate(21)") do
     n.times do
       Nanoid.generate(size: 21, alphabet: alphabet, secure: false)
+    end
+  end
+
+  x.report("UUID v4") do
+    n.times do
+      UUID.random
+    end
+  end
+end
+
+Benchmark.ips do |x|
+  x.report("Nanoid.simple_generate(16)") do
+    n.times do
+      Nanoid.generate(size: 16)
+    end
+  end
+
+  x.report("Nanoid.complex_generate(16)") do
+    n.times do
+      Nanoid.generate(size: 16, alphabet: alphabet)
     end
   end
 
