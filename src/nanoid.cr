@@ -1,5 +1,5 @@
 module Nanoid
-  SAFE_ALPHABET = "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  SAFE_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   def self.generate(size = 21, alphabet = SAFE_ALPHABET) : String
     return simple_generate(size) if alphabet == SAFE_ALPHABET
