@@ -17,7 +17,7 @@ module Nanoid
     end.to_s
   end
 
-  # This method use non-secure predictable random generator
+  # Non-secure predictable random generator
   private def self.non_secure_generate(size : Int32, alphabet : String) : String
     String::Builder.build do |io|
       while 0 <= (size -= 1)
@@ -26,6 +26,7 @@ module Nanoid
     end.to_s
   end
 
+  # Generate secure URL-friendly unique ID
   private def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
     mask = (2 << (Math.log(alphabet_size - 1) / Math.log(2)).to_i) - 1
@@ -54,6 +55,7 @@ module Nanoid
     io.to_s
   end
 
+  # Generates random numbers from a secure source provided by the system
   private def self.random_bytes(size) : Slice(UInt8)
     Random::Secure.random_bytes(size)
   end
