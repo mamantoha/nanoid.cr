@@ -46,6 +46,15 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 # => 2793b2351c
 ```
 
+## Benchmark
+
+```console
+    Nanoid.simple_generate(21)   0.54  (  1.84s ) (±16.55%)  256191264 B/op   2.11× slower
+   Nanoid.complex_generate(21)   0.41  (  2.44s ) (± 9.10%)  271892005 B/op   2.80× slower
+Nanoid.non_secure_generate(21)   1.15  (869.66ms) (±27.32%)  224164459 B/op        fastest
+                       UUID v4   0.87  (  1.15s ) (±19.43%)          0 B/op   1.32× slower
+```
+
 ## Development
 
 Clone this repository and install dependencies:
