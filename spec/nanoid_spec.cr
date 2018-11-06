@@ -1,6 +1,10 @@
 require "./spec_helper"
 
 describe Nanoid do
+  it "should have version" do
+    Nanoid::VERSION.should_not be_empty
+  end
+
   context "non-secure fast generator" do
     it "has correct size by default" do
       count = 100

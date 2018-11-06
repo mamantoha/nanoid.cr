@@ -1,3 +1,5 @@
+require "./nanoid/**"
+
 module Nanoid
   SAFE_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
