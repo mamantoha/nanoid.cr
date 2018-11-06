@@ -20,12 +20,30 @@ dependencies:
 
 ```crystal
 require "nanoid"
+```
 
+`Nanoid.generate` uses URL-friendly symbols (`A-Za-z0-9_-`) and returns an ID with 21 characters.
+
+```crystal
 Nanoid.generate
 # => 3gFI8yZxcfXsXGhB0036l
+```
 
+If you want to reduce ID length (and increase collisions probability), you can pass the length as an argument.
+
+```crystal
 Nanoid.generate(size: 8, alphabet: "1234567890abcdef")
 # => 86984b57
+```
+
+Non-secure API is also available.
+
+```crystal
+Nanoid.generate(secure: false)
+# => no0MmiInNcBm9jR2_3sGt
+
+Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
+# => 2793b2351c
 ```
 
 ## Development
