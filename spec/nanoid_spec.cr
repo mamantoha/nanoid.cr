@@ -1,6 +1,29 @@
 require "./spec_helper"
 
 describe Nanoid do
+  context "non-secure fast generator" do
+    it "has correct size by default" do
+      count = 100
+
+      count.times do
+        id = Nanoid.generate(secure: false)
+
+        (id.size).should eq(21)
+      end
+    end
+
+    it "accepts size and alphabet" do
+      count = 100
+
+      count.times do
+        id = Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
+
+        (id.size).should eq(10)
+        id.should_not match(/z/)
+      end
+    end
+  end
+
   it "has correct size" do
     count = 100
 
