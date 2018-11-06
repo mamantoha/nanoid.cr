@@ -19,9 +19,10 @@ module Nanoid
 
   # Non-secure predictable random generator
   private def self.non_secure_generate(size : Int32, alphabet : String) : String
+    alphabet_size = alphabet.size
     String::Builder.build do |io|
       while 0 <= (size -= 1)
-        io << alphabet[Random.rand(alphabet.size)]
+        io << alphabet[Random.rand(alphabet_size)]
       end
     end.to_s
   end

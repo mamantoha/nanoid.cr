@@ -3,29 +3,42 @@ require "../src/nanoid"
 require "uuid"
 
 n = 1_000_000
+alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 Benchmark.bm do |x|
-  x.report("Nanoid.simple_generate") do
+  x.report("Nanoid.simple_generate(21)") do
     n.times do
-      Nanoid.generate
+      Nanoid.generate(size: 21)
     end
   end
 
-  x.report("Nanoid.simple_generatei(16)") do
+  x.report("Nanoid.simple_generate(16)") do
     n.times do
-      Nanoid.generate(16)
+      Nanoid.generate(size: 16)
     end
   end
 
   x.report("Nanoid.complex_generate(21)") do
     n.times do
-      Nanoid.generate(size: 21, alphabet: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+      Nanoid.generate(size: 21, alphabet: alphabet)
     end
   end
 
   x.report("Nanoid.complex_generate(16)") do
     n.times do
-      Nanoid.generate(size: 16, alphabet: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+      Nanoid.generate(size: 16, alphabet: alphabet)
+    end
+  end
+
+  x.report("Nanoid.non_secure_generate(21)") do
+    n.times do
+      Nanoid.generate(size: 21, alphabet: alphabet, secure: false)
+    end
+  end
+
+  x.report("Nanoid.non_secure_generate(16)") do
+    n.times do
+      Nanoid.generate(size: 16, alphabet: alphabet, secure: false)
     end
   end
 
