@@ -1,7 +1,8 @@
 module Nanoid
   SAFE_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-  def self.generate(size = 21, alphabet = SAFE_ALPHABET) : String
+  def self.generate(size = 21, alphabet = SAFE_ALPHABET, secure = true) : String
+    return non_secure_generate(size, alphabet) unless secure
     return simple_generate(size) if alphabet == SAFE_ALPHABET
     complex_generate(size: size, alphabet: alphabet)
   end
@@ -12,6 +13,15 @@ module Nanoid
     String::Builder.build do |io|
       size.times do |i|
         io << SAFE_ALPHABET[bytes[i] & 63]
+      end
+    end.to_s
+  end
+
+  # This method use non-secure predictable random generator
+  private def self.non_secure_generate(size : Int32, alphabet : String) : String
+    String::Builder.build do |io|
+      while 0 <= (size -= 1)
+        io << alphabet[Random.rand(alphabet.size)]
       end
     end.to_s
   end
