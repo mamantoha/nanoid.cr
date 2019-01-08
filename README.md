@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/mamantoha/nanoid.cr.svg)](https://github.com/mamantoha/nanoid.cr/releases)
 [![License](https://img.shields.io/github/license/mamantoha/nanoid.cr.svg)](https://github.com/mamantoha/nanoid.cr/blob/master/LICENSE)
 
-Crystal implementation of original NanoID https://github.com/ai/nanoid
+Crystal implementation of original [NanoID](https://github.com/ai/nanoid)
 
 ## Installation
 
@@ -49,10 +49,10 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 ## Benchmark
 
 ```console
-    Nanoid.simple_generate(21)   0.54  (  1.84s ) (±16.55%)  256191264 B/op   2.11× slower
-   Nanoid.complex_generate(21)   0.41  (  2.44s ) (± 9.10%)  271892005 B/op   2.80× slower
-Nanoid.non_secure_generate(21)   1.15  (869.66ms) (±27.32%)  224164459 B/op        fastest
-                       UUID v4   0.87  (  1.15s ) (±19.43%)          0 B/op   1.32× slower
+    Nanoid.simple_generate(21)   0.59  (  1.68s ) (± 1.13%)  257117984 B/op   4.25× slower
+   Nanoid.complex_generate(21)   0.42  (  2.36s ) (± 0.23%)  271714640 B/op   5.97× slower
+Nanoid.non_secure_generate(21)   2.53  (395.98ms) (± 1.25%)  224421143 B/op        fastest
+                       UUID v4   0.87  (  1.14s ) (± 0.18%)          0 B/op   2.89× slower
 ```
 
 ## Development
