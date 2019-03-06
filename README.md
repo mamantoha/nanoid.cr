@@ -60,7 +60,7 @@ Nanoid.non_secure_generate(21)   2.53  (395.98ms) (± 1.25%)  224421143 B/op    
 
 Clone this repository and install dependencies:
 
-```
+```console
 shards install
 ```
 
