@@ -49,11 +49,22 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 
 ## Benchmark
 
+`crystal bench/benchmark.cr --release`
+
 ```console
-    Nanoid.simple_generate(21)   0.59  (  1.68s ) (± 1.13%)  257117984 B/op   4.25× slower
-   Nanoid.complex_generate(21)   0.42  (  2.36s ) (± 0.23%)  271714640 B/op   5.97× slower
-Nanoid.non_secure_generate(21)   2.53  (395.98ms) (± 1.25%)  224421143 B/op        fastest
-                       UUID v4   0.87  (  1.14s ) (± 0.18%)          0 B/op   2.89× slower
+Crystal 0.34.0-dev [c4d70bc4e] (2020-03-01)
+
+LLVM: 8.0.0
+Default target: x86_64-unknown-linux-gnu
+
+    Nanoid.simple_generate(21) 596.08m (  1.68s ) (± 9.72%)  244MB/op   2.50× slower
+   Nanoid.complex_generate(21) 517.15m (  1.93s ) (± 8.54%)  259MB/op   2.88× slower
+Nanoid.non_secure_generate(21)   1.16  (859.21ms) (±22.61%)  214MB/op   1.28× slower
+                       UUID v4   1.49  (671.57ms) (± 3.73%)   0.0B/op        fastest
+    Nanoid.simple_generate(16) 815.82m (  1.23s ) (±10.06%)  229MB/op   1.85× slower
+   Nanoid.complex_generate(16) 612.54m (  1.63s ) (± 8.70%)  241MB/op   2.46× slower
+Nanoid.non_secure_generate(16)   1.50  (665.54ms) (±13.96%)  198MB/op   1.00× slower
+                          UUID   1.51  (664.34ms) (± 1.81%)   0.0B/op        fastest
 ```
 
 ## Development
@@ -84,6 +95,6 @@ crystal spec
 
 ## License
 
-Copyright: 2018 Anton Maminov (anton.maminov@gmail.com)
+Copyright: 2018-2020 Anton Maminov (anton.maminov@gmail.com)
 
 This library is distributed under the MIT license. Please see the LICENSE file.

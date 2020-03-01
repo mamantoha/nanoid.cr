@@ -5,6 +5,9 @@ require "uuid"
 n = 1_000_000
 alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+puts Crystal::DESCRIPTION
+puts
+
 Benchmark.ips do |x|
   x.report("Nanoid.simple_generate(21)") do
     n.times do
