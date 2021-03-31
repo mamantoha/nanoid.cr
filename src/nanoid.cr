@@ -51,8 +51,10 @@ module Nanoid
 
     total = 0
 
-    String.build(capacity: size) do |io|
-      loop do
+    String.new(size) do |buffer|
+      run = true
+
+      while total < size
         bytes = random_bytes(size)
 
         step.times do |i|
@@ -60,14 +62,17 @@ module Nanoid
 
           next unless byte
 
-          char = byte && alphabet[byte]?
+          char = alphabet[byte]?
+
           next unless char
 
-          io << char
+          buffer[total] = char.ord.to_u8
 
-          return io.to_s if (total += 1) == size
+          break if (total += 1) == size
         end
       end
+
+      {size, size}
     end
   end
 
