@@ -52,8 +52,6 @@ module Nanoid
     total = 0
 
     String.new(size) do |buffer|
-      run = true
-
       while total < size
         bytes = random_bytes(size)
 
