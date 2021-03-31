@@ -53,19 +53,19 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 `crystal run --release bench/benchmark.cr`
 
 ```console
-Crystal 1.0.0-dev [eb4609744] (2020-07-21)
+Crystal 1.1.0-dev [e7b46c407] (2021-03-30)
 
-LLVM: 8.0.0
+LLVM: 10.0.0
 Default target: x86_64-unknown-linux-gnu
 
-    Nanoid.simple_generate(21) 483.93m (  2.07s ) (± 0.41%)  244MB/op   5.28× slower
-   Nanoid.complex_generate(21) 329.91m (  3.03s ) (± 1.38%)  259MB/op   7.74× slower
-Nanoid.non_secure_generate(21)   2.55  (391.51ms) (± 1.09%)  214MB/op        fastest
-                       UUID v4 545.67m (  1.83s ) (± 0.91%)   0.0B/op   4.68× slower
-    Nanoid.simple_generate(16) 483.35m (  2.07s ) (± 0.57%)  229MB/op   6.48× slower
-   Nanoid.complex_generate(16) 357.36m (  2.80s ) (± 0.70%)  241MB/op   8.76× slower
-Nanoid.non_secure_generate(16)   3.13  (319.43ms) (± 1.85%)  198MB/op        fastest
-                          UUID 546.95m (  1.83s ) (± 0.62%)   0.0B/op   5.72× slower
+    Nanoid.simple_generate(21)   1.55  (643.82ms) (±22.91%)  76.3MB/op   4.03× slower
+   Nanoid.complex_generate(21)   1.03  (966.43ms) (±21.09%)  91.2MB/op   6.05× slower
+Nanoid.non_secure_generate(21)   6.26  (159.78ms) (± 1.75%)  45.8MB/op        fastest
+                       UUID v4   2.35  (425.34ms) (± 0.82%)    0.0B/op   2.66× slower
+    Nanoid.simple_generate(16)   1.90  (525.14ms) (±13.11%)  61.3MB/op   4.29× slower
+   Nanoid.complex_generate(16)   1.30  (769.45ms) (± 5.01%)  73.2MB/op   6.29× slower
+Nanoid.non_secure_generate(16)   8.17  (122.36ms) (± 4.12%)  30.5MB/op        fastest
+                          UUID   2.31  (432.65ms) (± 0.67%)    0.0B/op   3.54× slower
 ```
 
 ## Development
