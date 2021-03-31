@@ -15,21 +15,25 @@ module Nanoid
   private def self.simple_generate(size : Int32) : String
     bytes = random_bytes(size)
 
-    String.build(capacity: size) do |io|
+    String.new(size) do |buffer|
       size.times do |i|
-        io << SAFE_ALPHABET[bytes[i] & 63]
+        buffer[i] = SAFE_ALPHABET[bytes[i] & 63].ord.to_u8
       end
+
+      {size, size}
     end
   end
 
   # Non-secure predictable random generator
   private def self.non_secure_generate(size : Int32, alphabet : String) : String
-    alphabet_size = alphabet.size
+    String.new(size) do |buffer|
+      alphabet_size = alphabet.size
 
-    String.build(capacity: size) do |io|
-      size.times do
-        io << alphabet[Random.rand(alphabet_size)]
+      size.times do |i|
+        buffer[i] = alphabet[Random.rand(alphabet_size)].ord.to_u8
       end
+
+      {size, size}
     end
   end
 
