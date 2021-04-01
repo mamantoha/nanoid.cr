@@ -1,7 +1,6 @@
-require "./ext/math"
-require "./nanoid/**"
-
 module Nanoid
+  VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
+
   SAFE_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   def self.generate(size = 21, alphabet = SAFE_ALPHABET, secure = true) : String
@@ -50,7 +49,7 @@ module Nanoid
     # values closer to the alphabet size. The bitmask calculates the closest
     # `2^31 - 1` number, which exceeds the alphabet size.
     # For example, the bitmask for the alphabet size 30 is 31 (00011111).
-    mask = (2 << (31 - Math.clz32((alphabet_size - 1) | 1))) - 1
+    mask = (2 << (Math.log(alphabet_size - 1) / Math::LOG2).to_i) - 1
 
     # Next, a step determines how many random bytes to generate.
     # The number of random bytes gets decided upon the ID size, mask,
