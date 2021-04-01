@@ -17,6 +17,11 @@ module Nanoid
 
     String.new(size) do |buffer|
       size.times do |i|
+        # It is incorrect to use bytes exceeding the alphabet size.
+        # The following mask reduces the random byte in the 0-255 value
+        # range to the 0-63 value range. Therefore, adding hacks, such
+        # as empty string fallback or magic numbers, is unneccessary because
+        # the bitmask trims bytes down to the alphabet size.
         buffer[i] = SAFE_ALPHABET[bytes[i] & 63].ord.to_u8
       end
 
@@ -41,19 +46,23 @@ module Nanoid
   def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
 
-    # We can’t use bytes bigger than the alphabet. To make bytes values closer
-    # to the alphabet, we apply bitmask on them. We look for the closest
-    # `2 ** x - 1` number, which will be bigger than alphabet size. If we have
-    # 30 symbols in the alphabet, we will take 31 (00011111).
-    mask = (2 << 31 - Math.clz32((alphabet.size - 1) | 1)) - 1
+    # First, a bitmask is necessary to generate the ID. The bitmask makes bytes
+    # values closer to the alphabet size. The bitmask calculates the closest
+    # `2^31 - 1` number, which exceeds the alphabet size.
+    # For example, the bitmask for the alphabet size 30 is 31 (00011111).
+    mask = (2 << (31 - Math.clz32((alphabet.size - 1) | 1))) - 1
 
+    # Next, a step determines how many random bytes to generate.
+    # The number of random bytes gets decided upon the ID size, mask,
+    # alphabet size, and magic number 1.6 (using 1.6 peaks at performance
+    # according to benchmarks).
     step = (1.6 * mask * size / alphabet_size).ceil.to_i
 
     total = 0
 
     String.new(size) do |buffer|
       while total < size
-        bytes = random_bytes(size)
+        bytes = random_bytes(step)
 
         step.times do |i|
           byte = bytes[i]? ? (bytes[i] & mask) : nil
