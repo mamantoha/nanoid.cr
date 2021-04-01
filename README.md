@@ -58,14 +58,12 @@ Crystal 1.1.0-dev [e7b46c407] (2021-03-30)
 LLVM: 10.0.0
 Default target: x86_64-unknown-linux-gnu
 
-    Nanoid.simple_generate(21)   2.01  (498.25ms) (± 5.03%)  76.3MB/op   3.11× slower
-   Nanoid.complex_generate(21)   1.02  (983.07ms) (±11.12%)  91.6MB/op   6.13× slower
-Nanoid.non_secure_generate(21)   6.24  (160.31ms) (± 5.53%)  45.8MB/op        fastest
-                       UUID v4   2.17  (459.78ms) (±22.74%)    0.0B/op   2.87× slower
-    Nanoid.simple_generate(16)   1.50  (665.50ms) (±29.37%)  61.3MB/op   5.62× slower
-   Nanoid.complex_generate(16)   1.53  (652.78ms) (±14.02%)  61.1MB/op   5.51× slower
-Nanoid.non_secure_generate(16)   8.44  (118.41ms) (± 4.69%)  30.5MB/op        fastest
-                          UUID   1.77  (566.09ms) (±41.97%)    0.0B/op   4.78× slower
+ Nanoid.simple_generate(21)   1.93  (517.44ms) (± 8.59%)  76.3MB/op        fastest
+Nanoid.complex_generate(21)   1.05  (950.32ms) (± 3.96%)  91.6MB/op   1.84× slower
+                    UUID v4   1.59  (628.64ms) (±14.80%)   168MB/op   1.21× slower
+ Nanoid.simple_generate(36) 992.75m (  1.01s ) (±19.92%)  107MB/op   1.51× slower
+Nanoid.complex_generate(36) 796.97m (  1.25s ) (±20.35%)  122MB/op   1.89× slower
+                    UUID v4   1.50  (664.97ms) (±16.80%)  168MB/op        fastest
 ```
 
 ## Development
