@@ -50,13 +50,13 @@ module Nanoid
     # values closer to the alphabet size. The bitmask calculates the closest
     # `2^31 - 1` number, which exceeds the alphabet size.
     # For example, the bitmask for the alphabet size 30 is 31 (00011111).
-    mask = (2 << (31 - Math.clz32((alphabet.size - 1) | 1))) - 1
+    mask = (2 << (31 - Math.clz32((alphabet_size - 1) | 1))) - 1
 
     # Next, a step determines how many random bytes to generate.
     # The number of random bytes gets decided upon the ID size, mask,
     # alphabet size, and magic number 1.6 (using 1.6 peaks at performance
     # according to benchmarks).
-    step = (1.6 * mask * size / alphabet_size).ceil.to_i
+    step = ((1.6 * mask * size) / alphabet_size).ceil.to_i
 
     total = 0
 
@@ -65,11 +65,7 @@ module Nanoid
         bytes = random_bytes(step)
 
         step.times do |i|
-          byte = bytes[i]? ? (bytes[i] & mask) : nil
-
-          next unless byte
-
-          char = alphabet[byte]?
+          char = alphabet[bytes[i] & mask]?
 
           next unless char
 
