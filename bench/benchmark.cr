@@ -3,7 +3,7 @@ require "../src/nanoid"
 require "uuid"
 
 n = 1_000_000
-alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alphabet = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 puts Crystal::DESCRIPTION
 puts
@@ -11,19 +11,19 @@ puts
 Benchmark.ips do |x|
   x.report("Nanoid.simple_generate(21)") do
     n.times do
-      Nanoid.generate
+      Nanoid.simple_generate(21)
     end
   end
 
   x.report("Nanoid.complex_generate(21)") do
     n.times do
-      Nanoid.generate(size: 21, alphabet: alphabet)
+      Nanoid.complex_generate(size: 21, alphabet: alphabet)
     end
   end
 
   x.report("Nanoid.non_secure_generate(21)") do
     n.times do
-      Nanoid.generate(size: 21, alphabet: alphabet, secure: false)
+      Nanoid.non_secure_generate(size: 21, alphabet: alphabet)
     end
   end
 
@@ -37,19 +37,19 @@ end
 Benchmark.ips do |x|
   x.report("Nanoid.simple_generate(16)") do
     n.times do
-      Nanoid.generate(size: 16)
+      Nanoid.simple_generate(size: 16)
     end
   end
 
   x.report("Nanoid.complex_generate(16)") do
     n.times do
-      Nanoid.generate(size: 16, alphabet: alphabet)
+      Nanoid.complex_generate(size: 16, alphabet: alphabet)
     end
   end
 
   x.report("Nanoid.non_secure_generate(16)") do
     n.times do
-      Nanoid.generate(size: 16, alphabet: alphabet, secure: false)
+      Nanoid.non_secure_generate(size: 16, alphabet: alphabet)
     end
   end
 

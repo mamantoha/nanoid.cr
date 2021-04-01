@@ -6,32 +6,39 @@ module Nanoid
 
   def self.generate(size = 21, alphabet = SAFE_ALPHABET, secure = true) : String
     return non_secure_generate(size, alphabet) unless secure
+
     return simple_generate(size) if alphabet == SAFE_ALPHABET
+
     complex_generate(size: size, alphabet: alphabet)
   end
 
-  private def self.simple_generate(size : Int32) : String
+  def self.simple_generate(size : Int32) : String
     bytes = random_bytes(size)
 
-    String.build do |io|
+    String.new(size) do |buffer|
       size.times do |i|
-        io << SAFE_ALPHABET[bytes[i] & 63]
+        buffer[i] = SAFE_ALPHABET[bytes[i] & 63].ord.to_u8
       end
+
+      {size, size}
     end
   end
 
   # Non-secure predictable random generator
-  private def self.non_secure_generate(size : Int32, alphabet : String) : String
-    alphabet_size = alphabet.size
-    String.build do |io|
-      while 0 <= (size -= 1)
-        io << alphabet[Random.rand(alphabet_size)]
+  def self.non_secure_generate(size : Int32, alphabet : String) : String
+    String.new(size) do |buffer|
+      alphabet_size = alphabet.size
+
+      size.times do |i|
+        buffer[i] = alphabet[Random.rand(alphabet_size)].ord.to_u8
       end
+
+      {size, size}
     end
   end
 
   # Generate secure URL-friendly unique ID
-  private def self.complex_generate(size : Int32, alphabet : String) : String
+  def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
 
     # We can’t use bytes bigger than the alphabet. To make bytes values closer
@@ -44,8 +51,8 @@ module Nanoid
 
     total = 0
 
-    String.build do |io|
-      loop do
+    String.new(size) do |buffer|
+      while total < size
         bytes = random_bytes(size)
 
         step.times do |i|
@@ -53,14 +60,17 @@ module Nanoid
 
           next unless byte
 
-          char = byte && alphabet[byte]?
+          char = alphabet[byte]?
+
           next unless char
 
-          io << char
+          buffer[total] = char.ord.to_u8
 
-          return io.to_s if (total += 1) == size
+          break if (total += 1) == size
         end
       end
+
+      {size, size}
     end
   end
 

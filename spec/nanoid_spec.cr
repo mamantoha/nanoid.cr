@@ -77,6 +77,7 @@ describe Nanoid do
   end
 
   it "generates with custom settings" do
-    Nanoid.generate(size: 12, alphabet: "1234567890abcdef")
+    id = Nanoid.generate(size: 12, alphabet: "1234567890abcdef")
+    (id.size).should eq(12)
   end
 end
