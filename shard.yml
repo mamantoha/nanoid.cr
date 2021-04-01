@@ -1,12 +1,12 @@
 name: nanoid
-version: 0.5.0
+version: 0.6.0
 
 authors:
   - Anton Maminov <anton.maminov@gmail.com>
 description: |
   Crystal implementation of Nanoid, secure URL-friendly unique ID generator
 
-crystal: 0.33.0
+crystal: ">= 1.0.0"
 
 development_dependencies:
   ameba:
