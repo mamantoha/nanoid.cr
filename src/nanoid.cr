@@ -12,7 +12,7 @@ module Nanoid
     complex_generate(size: size, alphabet: alphabet)
   end
 
-  private def self.simple_generate(size : Int32) : String
+  def self.simple_generate(size : Int32) : String
     bytes = random_bytes(size)
 
     String.new(size) do |buffer|
@@ -25,7 +25,7 @@ module Nanoid
   end
 
   # Non-secure predictable random generator
-  private def self.non_secure_generate(size : Int32, alphabet : String) : String
+  def self.non_secure_generate(size : Int32, alphabet : String) : String
     String.new(size) do |buffer|
       alphabet_size = alphabet.size
 
@@ -38,7 +38,7 @@ module Nanoid
   end
 
   # Generate secure URL-friendly unique ID
-  private def self.complex_generate(size : Int32, alphabet : String) : String
+  def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
 
     # We can’t use bytes bigger than the alphabet. To make bytes values closer
