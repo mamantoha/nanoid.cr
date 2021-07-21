@@ -7,9 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    container:
-      image: crystallang/crystal
     steps:
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: shards install --ignore-crystal-version
