@@ -21,11 +21,11 @@ Benchmark.ips do |x|
     end
   end
 
-  # x.report("Nanoid.non_secure_generate(21)") do
-  #   n.times do
-  #     Nanoid.non_secure_generate(size: 21, alphabet: alphabet)
-  #   end
-  # end
+  x.report("Nanoid.non_secure_generate(21)") do
+    n.times do
+      Nanoid.non_secure_generate(size: 21, alphabet: alphabet)
+    end
+  end
 
   x.report("UUID v4") do
     n.times do
@@ -47,11 +47,11 @@ Benchmark.ips do |x|
     end
   end
 
-  # x.report("Nanoid.non_secure_generate(36)") do
-  #   n.times do
-  #     Nanoid.non_secure_generate(size: 36, alphabet: alphabet)
-  #   end
-  # end
+  x.report("Nanoid.non_secure_generate(36)") do
+    n.times do
+      Nanoid.non_secure_generate(size: 36, alphabet: alphabet)
+    end
+  end
 
   x.report("UUID v4") do
     n.times do
