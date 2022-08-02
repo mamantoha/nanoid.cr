@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   check_format:
@@ -23,10 +23,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {os: ubuntu-latest, crystal: latest}
-          - {os: ubuntu-latest, crystal: nightly}
-          - {os: macos-latest}
-          - {os: windows-latest}
+          - { os: ubuntu-latest, crystal: latest }
+          - { os: ubuntu-latest, crystal: nightly }
+          - { os: macos-latest }
+          - { os: windows-latest }
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Crystal
