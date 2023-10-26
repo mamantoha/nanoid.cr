@@ -53,19 +53,19 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 `crystal run --release bench/benchmark.cr`
 
 ```console
-Crystal 1.6.0-dev [8cb915f95] (2022-08-01)
+Crystal 1.10.0 (2023-10-09)
 
-LLVM: 10.0.0
-Default target: x86_64-unknown-linux-gnu
+LLVM: 15.0.7
+Default target: aarch64-apple-darwin23.0.0
 
-    Nanoid.simple_generate(21)   2.86  (350.04ms) (± 3.57%)  76.3MB/op   1.87× slower
-   Nanoid.complex_generate(21)   1.59  (628.65ms) (± 0.50%)  91.7MB/op   3.36× slower
-Nanoid.non_secure_generate(21)   5.35  (187.06ms) (± 2.19%)  45.9MB/op        fastest
-                       UUID v4   2.42  (413.03ms) (± 4.03%)   168MB/op   2.21× slower
-    Nanoid.simple_generate(36)   1.94  (515.39ms) (± 1.14%)   107MB/op   1.71× slower
-   Nanoid.complex_generate(36)   1.37  (732.54ms) (± 0.40%)   122MB/op   2.43× slower
-Nanoid.non_secure_generate(36)   3.32  (301.01ms) (± 2.46%)  61.0MB/op        fastest
-                       UUID v4   2.35  (426.41ms) (± 1.98%)   168MB/op   1.42× slower
+    Nanoid.simple_generate(21)   3.93  (254.56ms) (± 0.67%)  76.4MB/op   3.38× slower
+   Nanoid.complex_generate(21)   3.35  (298.92ms) (± 0.93%)  91.7MB/op   3.97× slower
+Nanoid.non_secure_generate(21)  13.27  ( 75.37ms) (± 7.77%)  45.9MB/op        fastest
+                       UUID v4   3.74  (267.40ms) (± 1.04%)   168MB/op   3.55× slower
+    Nanoid.simple_generate(36)   3.48  (286.96ms) (± 0.70%)   107MB/op   2.32× slower
+   Nanoid.complex_generate(36)   2.95  (339.27ms) (± 0.61%)   122MB/op   2.75× slower
+Nanoid.non_secure_generate(36)   8.10  (123.45ms) (± 1.24%)  61.1MB/op        fastest
+                       UUID v4   3.75  (266.92ms) (± 1.30%)   168MB/op   2.16× slower
 ```
 
 ## Development
@@ -96,6 +96,6 @@ crystal spec
 
 ## License
 
-Copyright: 2018-2022 Anton Maminov (anton.maminov@gmail.com)
+Copyright: 2018-2023 Anton Maminov (anton.maminov@gmail.com)
 
 This library is distributed under the MIT license. Please see the LICENSE file.
