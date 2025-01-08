@@ -49,7 +49,7 @@ module Nanoid
     # values closer to the alphabet size. The bitmask calculates the closest
     # `2^31 - 1` number, which exceeds the alphabet size.
     # For example, the bitmask for the alphabet size 30 is 31 (00011111).
-    mask = (2 << (Math.log(alphabet_size - 1) / Math::LOG2).to_i) - 1
+    mask = (2 << Math.log2(alphabet_size - 1).to_i) - 1
     # Though, the bitmask solution is not perfect since the bytes exceeding
     # the alphabet size are refused. Therefore, to reliably generate the ID,
     # the random bytes redundancy has to be satisfied.
