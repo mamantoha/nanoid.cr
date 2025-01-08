@@ -96,6 +96,6 @@ crystal spec
 
 ## License
 
-Copyright: 2018-2023 Anton Maminov (anton.maminov@gmail.com)
+Copyright: 2018-2025 Anton Maminov (anton.maminov@gmail.com)
 
 This library is distributed under the MIT license. Please see the LICENSE file.
