@@ -1,12 +1,12 @@
 module Nanoid
   VERSION = {{ `shards version #{__DIR__}`.chomp.stringify }}
 
-  SAFE_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  URL_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-  def self.generate(size = 21, alphabet = SAFE_ALPHABET, secure = true) : String
+  def self.generate(size = 21, alphabet = URL_ALPHABET, secure = true) : String
     return non_secure_generate(size, alphabet) unless secure
 
-    return simple_generate(size) if alphabet == SAFE_ALPHABET
+    return simple_generate(size) if alphabet == URL_ALPHABET
 
     complex_generate(size: size, alphabet: alphabet)
   end
@@ -21,7 +21,7 @@ module Nanoid
         # range to the 0-63 value range. Therefore, adding hacks, such
         # as empty string fallback or magic numbers, is unneccessary because
         # the bitmask trims bytes down to the alphabet size.
-        buffer[i] = SAFE_ALPHABET[bytes[i] & 63].ord.to_u8
+        buffer[i] = URL_ALPHABET[bytes[i] & 63].ord.to_u8
       end
 
       {size, size}

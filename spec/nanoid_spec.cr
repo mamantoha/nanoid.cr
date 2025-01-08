@@ -45,7 +45,7 @@ describe Nanoid do
       id = Nanoid.generate
 
       (0...id.size).each do |j|
-        (Nanoid::SAFE_ALPHABET.index(id[j])).should_not be_nil
+        (Nanoid::URL_ALPHABET.index(id[j])).should_not be_nil
       end
     end
   end
