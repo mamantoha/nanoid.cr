@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Crystal Docs 1.17.1">
+<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_name" content="nanoid">
+
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="nanoid">
+  <title>nanoid master</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<input type="checkbox" id="sidebar-btn">
+<label for="sidebar-btn" id="sidebar-btn-label">
+  <svg class="open" xmlns="http://www.w3.org/2000/svg" height="2em" width="2em" viewBox="0 0 512 512"><title>Open Sidebar</title><path fill="currentColor" d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z"></path></svg>
+  <svg class="close" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><title>Close Sidebar</title><path fill="currentColor" d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z"></path></svg>
+</label>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          nanoid
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" " data-id="nanoid/Nanoid" data-name="nanoid">
+      <a href="Nanoid.html">Nanoid</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="nanoid.cr" class="anchor" href="#nanoid.cr">  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>nanoid.cr</h1>
+<p><a href="https://app.codacy.com/app/mamantoha/nanoid.cr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mamantoha/nanoid.cr&amp;utm_campaign=Badge_Grade_Settings"><img src="https://api.codacy.com/project/badge/Grade/3108082114df406abb95c38bf751c2f0" alt="Codacy Badge" /></a>
+<a href="https://github.com/mamantoha/nanoid.cr/actions/workflows/crystal.yml"><img src="https://github.com/mamantoha/nanoid.cr/actions/workflows/crystal.yml/badge.svg" alt="Crystal CI" /></a>
+<a href="https://github.com/mamantoha/nanoid.cr/releases"><img src="https://img.shields.io/github/release/mamantoha/nanoid.cr.svg" alt="GitHub release" /></a>
+<a href="https://mamantoha.github.io/nanoid.cr/"><img src="https://img.shields.io/badge/docs-available-brightgreen.svg" alt="Docs" /></a>
+<a href="https://github.com/mamantoha/nanoid.cr/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mamantoha/nanoid.cr.svg" alt="License" /></a></p>
+<p>Crystal implementation of original <a href="https://github.com/ai/nanoid">NanoID</a></p>
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+<p>Add this to your application's <code>shard.yml</code>:</p>
+<pre><code class="language-yaml">dependencies:
+  nanoid:
+    github: mamantoha/nanoid.cr</code></pre>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;nanoid&quot;</span></code></pre>
+<p><code>Nanoid.generate</code> uses URL-friendly symbols (<code>A-Za-z0-9_-</code>) and returns an ID with 21 characters.</p>
+<pre><code class="language-crystal"><span class="t">Nanoid</span>.generate
+<span class="c"># =&gt; 3gFI8yZxcfXsXGhB0036l</span></code></pre>
+<p>If you want to reduce ID length (and increase collisions probability), you can pass the length as an argument.</p>
+<pre><code class="language-crystal"><span class="t">Nanoid</span>.generate(size: <span class="n">8</span>, alphabet: <span class="s">&quot;1234567890abcdef&quot;</span>)
+<span class="c"># =&gt; 86984b57</span></code></pre>
+<p>Non-secure API is also available.</p>
+<pre><code class="language-crystal"><span class="t">Nanoid</span>.generate(secure: <span class="n">false</span>)
+<span class="c"># =&gt; no0MmiInNcBm9jR2_3sGt</span>
+
+<span class="t">Nanoid</span>.generate(size: <span class="n">10</span>, alphabet: <span class="s">&quot;1234567890abcdef&quot;</span>, secure: <span class="n">false</span>)
+<span class="c"># =&gt; 2793b2351c</span></code></pre>
+<h2><a id="benchmark" class="anchor" href="#benchmark">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Benchmark</h2>
+<p><code>crystal run --release ./bench/benchmark.cr</code></p>
+<pre><code class="language-console">Crystal 1.16.2 (2025-04-29)
+
+LLVM: 20.1.4
+Default target: aarch64-apple-darwin24.5.0
+
+    Nanoid.simple_generate(21)   3.94  (253.59ms) (± 0.63%)  76.3MB/op   3.51× slower
+   Nanoid.complex_generate(21)   3.42  (292.32ms) (± 1.27%)  91.6MB/op   4.05× slower
+Nanoid.non_secure_generate(21)  13.85  ( 72.22ms) (± 1.32%)  45.8MB/op        fastest
+                       UUID v4   3.87  (258.36ms) (± 0.79%)   168MB/op   3.58× slower
+    Nanoid.simple_generate(36)   3.55  (281.52ms) (± 0.58%)   107MB/op   2.28× slower
+   Nanoid.complex_generate(36)   3.06  (327.20ms) (± 0.74%)   122MB/op   2.65× slower
+Nanoid.non_secure_generate(36)   8.11  (123.26ms) (± 2.13%)  61.0MB/op        fastest
+                       UUID v4   3.84  (260.71ms) (± 3.38%)   168MB/op   2.12× slower</code></pre>
+<h2><a id="development" class="anchor" href="#development">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Development</h2>
+<p>Clone this repository and install dependencies:</p>
+<pre><code class="language-console">shards install</code></pre>
+<p>Run tests:</p>
+<pre><code class="language-console">crystal spec</code></pre>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+<ol>
+<li>Fork it (<a href="https://github.com/mamantoha/nanoid.cr/fork">https://github.com/mamantoha/nanoid.cr/fork</a>)</li>
+<li>Create your feature branch (git checkout -b my-new-feature)</li>
+<li>Commit your changes (git commit -am 'Add some feature')</li>
+<li>Push to the branch (git push origin my-new-feature)</li>
+<li>Create a new Pull Request</li>
+</ol>
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+<ul>
+<li><a href="https://github.com/mamantoha">mamantoha</a> Anton Maminov - creator, maintainer</li>
+</ul>
+<h2><a id="license" class="anchor" href="#license">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>License</h2>
+<p>Copyright: 2018-2025 Anton Maminov (anton.maminov@gmail.com)</p>
+<p>This library is distributed under the MIT license. Please see the LICENSE file.</p>
+</div>
+</body>
+</html>
