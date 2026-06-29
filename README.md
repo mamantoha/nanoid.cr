@@ -53,19 +53,19 @@ Nanoid.generate(size: 10, alphabet: "1234567890abcdef", secure: false)
 `crystal run --release ./bench/benchmark.cr`
 
 ```console
-Crystal 1.16.2 (2025-04-29)
+Crystal 1.20.2 (2026-05-15)
 
-LLVM: 20.1.4
-Default target: aarch64-apple-darwin24.5.0
+LLVM: 22.1.6
+Default target: aarch64-apple-darwin25.5.0
 
-    Nanoid.simple_generate(21)   3.94  (253.59ms) (± 0.63%)  76.3MB/op   3.51× slower
-   Nanoid.complex_generate(21)   3.42  (292.32ms) (± 1.27%)  91.6MB/op   4.05× slower
-Nanoid.non_secure_generate(21)  13.85  ( 72.22ms) (± 1.32%)  45.8MB/op        fastest
-                       UUID v4   3.87  (258.36ms) (± 0.79%)   168MB/op   3.58× slower
-    Nanoid.simple_generate(36)   3.55  (281.52ms) (± 0.58%)   107MB/op   2.28× slower
-   Nanoid.complex_generate(36)   3.06  (327.20ms) (± 0.74%)   122MB/op   2.65× slower
-Nanoid.non_secure_generate(36)   8.11  (123.26ms) (± 2.13%)  61.0MB/op        fastest
-                       UUID v4   3.84  (260.71ms) (± 3.38%)   168MB/op   2.12× slower
+    Nanoid.simple_generate(21)   4.02  (248.69ms) (± 0.48%)  76.3MB/op   2.40× slower
+   Nanoid.complex_generate(21)   3.27  (306.11ms) (± 2.61%)  91.6MB/op   2.96× slower
+Nanoid.non_secure_generate(21)   9.65  (103.58ms) (± 1.75%)  45.8MB/op        fastest
+                       UUID v4   3.87  (258.20ms) (± 1.28%)   168MB/op   2.49× slower
+    Nanoid.simple_generate(36)   4.05  (246.65ms) (± 2.05%)   107MB/op   1.62× slower
+   Nanoid.complex_generate(36)   3.06  (326.75ms) (± 0.98%)   122MB/op   2.14× slower
+Nanoid.non_secure_generate(36)   6.55  (152.59ms) (± 1.58%)  61.0MB/op        fastest
+                       UUID v4   3.82  (261.80ms) (± 1.85%)   168MB/op   1.72× slower
 ```
 
 ## Development
