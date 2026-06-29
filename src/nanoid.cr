@@ -4,6 +4,7 @@ module Nanoid
   URL_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   def self.generate(size = 21, alphabet = URL_ALPHABET, secure = true) : String
+    validate_size(size)
     validate_alphabet(alphabet)
 
     return non_secure_generate(size, alphabet) unless secure
@@ -83,6 +84,12 @@ module Nanoid
   # Generates random numbers from a secure source provided by the system
   private def self.random_bytes(size) : Slice(UInt8)
     Random::Secure.random_bytes(size)
+  end
+
+  private def self.validate_size(size : Int) : Nil
+    if size < 0
+      raise ArgumentError.new("Size must be non-negative")
+    end
   end
 
   private def self.validate_alphabet(alphabet : String) : Nil

@@ -61,6 +61,16 @@ describe Nanoid do
     end
   end
 
+  it "generates empty ID with zero size" do
+    Nanoid.generate(size: 0).should eq("")
+  end
+
+  it "rejects negative size" do
+    expect_raises(ArgumentError, "Size must be non-negative") do
+      Nanoid.generate(size: -1)
+    end
+  end
+
   it "generates URL-friendly IDs" do
     count = 100
 
