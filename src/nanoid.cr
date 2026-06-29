@@ -24,7 +24,7 @@ module Nanoid
         # range to the 0-63 value range. Therefore, adding hacks, such
         # as empty string fallback or magic numbers, is unneccessary because
         # the bitmask trims bytes down to the alphabet size.
-        buffer[i] = URL_ALPHABET[bytes[i] & 63].ord.to_u8
+        buffer[i] = URL_ALPHABET.byte_at(bytes[i] & 63)
       end
 
       {size, size}
@@ -34,6 +34,16 @@ module Nanoid
   # Non-secure predictable random generator
   def self.non_secure_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
+
+    if alphabet.ascii_only?
+      return String.new(size) do |buffer|
+        size.times do |i|
+          buffer[i] = alphabet.byte_at(Random.rand(alphabet_size))
+        end
+
+        {size, size}
+      end
+    end
 
     String.build do |str|
       size.times do
@@ -46,6 +56,7 @@ module Nanoid
   def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
     return alphabet * size if alphabet_size == 1
+    return ascii_complex_generate(size: size, alphabet: alphabet) if alphabet.ascii_only?
 
     # First, a bitmask is necessary to generate the ID. The bitmask makes bytes
     # values closer to the alphabet size. The bitmask calculates the closest
@@ -84,6 +95,32 @@ module Nanoid
   # Generates random numbers from a secure source provided by the system
   private def self.random_bytes(size) : Slice(UInt8)
     Random::Secure.random_bytes(size)
+  end
+
+  private def self.ascii_complex_generate(size : Int32, alphabet : String) : String
+    alphabet_size = alphabet.bytesize
+
+    mask = (2 << Math.log2(alphabet_size - 1).to_i) - 1
+    step = ((1.6 * mask * size) / alphabet_size).ceil.to_i
+    total = 0
+
+    String.new(size) do |buffer|
+      while total < size
+        bytes = random_bytes(step)
+
+        step.times do |i|
+          index = bytes[i] & mask
+
+          next if index >= alphabet_size
+
+          buffer[total] = alphabet.byte_at(index)
+
+          break if (total += 1) == size
+        end
+      end
+
+      {size, size}
+    end
   end
 
   private def self.validate_size(size : Int) : Nil
