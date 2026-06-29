@@ -34,6 +34,7 @@ module Nanoid
   # Non-secure predictable random generator
   def self.non_secure_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
+    return ascii_non_secure_generate(size: size, alphabet: alphabet) if alphabet.ascii_only?
 
     String.build do |str|
       size.times do
@@ -85,6 +86,18 @@ module Nanoid
   # Generates random numbers from a secure source provided by the system
   private def self.random_bytes(size) : Slice(UInt8)
     Random::Secure.random_bytes(size)
+  end
+
+  private def self.ascii_non_secure_generate(size : Int32, alphabet : String) : String
+    alphabet_size = alphabet.bytesize
+
+    String.new(size) do |buffer|
+      size.times do |i|
+        buffer[i] = alphabet.byte_at(Random.rand(alphabet_size))
+      end
+
+      {size, size}
+    end
   end
 
   private def self.ascii_complex_generate(size : Int32, alphabet : String) : String
