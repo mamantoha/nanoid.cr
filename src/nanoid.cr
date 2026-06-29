@@ -30,14 +30,12 @@ module Nanoid
 
   # Non-secure predictable random generator
   def self.non_secure_generate(size : Int32, alphabet : String) : String
-    String.new(size) do |buffer|
-      alphabet_size = alphabet.size
+    alphabet_size = alphabet.size
 
-      size.times do |i|
-        buffer[i] = alphabet[Random.rand(alphabet_size)].ord.to_u8
+    String.build do |str|
+      size.times do
+        str << alphabet[Random.rand(alphabet_size)]
       end
-
-      {size, size}
     end
   end
 
@@ -63,7 +61,7 @@ module Nanoid
 
     total = 0
 
-    String.new(size) do |buffer|
+    String.build do |str|
       while total < size
         bytes = random_bytes(step)
 
@@ -72,13 +70,11 @@ module Nanoid
 
           next unless char
 
-          buffer[total] = char.ord.to_u8
+          str << char
 
           break if (total += 1) == size
         end
       end
-
-      {size, size}
     end
   end
 

@@ -26,6 +26,15 @@ describe Nanoid do
         id.should_not match(/z/)
       end
     end
+
+    it "generates with non-ascii alphabet" do
+      id = Nanoid.generate(size: 12, alphabet: "аб", secure: false)
+
+      (id.size).should eq(12)
+      id.each_char do |char|
+        "аб".includes?(char).should be_true
+      end
+    end
   end
 
   it "has correct size" do
@@ -84,5 +93,14 @@ describe Nanoid do
   it "generates with one-character alphabet" do
     id = Nanoid.generate(size: 12, alphabet: "a")
     id.should eq("a" * 12)
+  end
+
+  it "generates with non-ascii alphabet" do
+    id = Nanoid.generate(size: 12, alphabet: "аб")
+
+    (id.size).should eq(12)
+    id.each_char do |char|
+      "аб".includes?(char).should be_true
+    end
   end
 end
