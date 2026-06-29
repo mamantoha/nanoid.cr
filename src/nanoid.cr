@@ -4,6 +4,8 @@ module Nanoid
   URL_ALPHABET = "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   def self.generate(size = 21, alphabet = URL_ALPHABET, secure = true) : String
+    validate_alphabet(alphabet)
+
     return non_secure_generate(size, alphabet) unless secure
 
     return simple_generate(size) if alphabet == URL_ALPHABET
@@ -81,5 +83,11 @@ module Nanoid
   # Generates random numbers from a secure source provided by the system
   private def self.random_bytes(size) : Slice(UInt8)
     Random::Secure.random_bytes(size)
+  end
+
+  private def self.validate_alphabet(alphabet : String) : Nil
+    unless 1 <= alphabet.size <= 256
+      raise ArgumentError.new("Alphabet must contain between 1 and 256 symbols")
+    end
   end
 end

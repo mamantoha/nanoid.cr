@@ -35,6 +35,20 @@ describe Nanoid do
         "аб".includes?(char).should be_true
       end
     end
+
+    it "rejects empty alphabet" do
+      expect_raises(ArgumentError, "Alphabet must contain between 1 and 256 symbols") do
+        Nanoid.generate(size: 12, alphabet: "", secure: false)
+      end
+    end
+
+    it "rejects alphabets with more than 256 symbols" do
+      alphabet = (0..256).map(&.chr).join
+
+      expect_raises(ArgumentError, "Alphabet must contain between 1 and 256 symbols") do
+        Nanoid.generate(size: 12, alphabet: alphabet, secure: false)
+      end
+    end
   end
 
   it "has correct size" do
@@ -101,6 +115,20 @@ describe Nanoid do
     (id.size).should eq(12)
     id.each_char do |char|
       "аб".includes?(char).should be_true
+    end
+  end
+
+  it "rejects empty alphabet" do
+    expect_raises(ArgumentError, "Alphabet must contain between 1 and 256 symbols") do
+      Nanoid.generate(size: 12, alphabet: "")
+    end
+  end
+
+  it "rejects alphabets with more than 256 symbols" do
+    alphabet = (0..256).map(&.chr).join
+
+    expect_raises(ArgumentError, "Alphabet must contain between 1 and 256 symbols") do
+      Nanoid.generate(size: 12, alphabet: alphabet)
     end
   end
 end
