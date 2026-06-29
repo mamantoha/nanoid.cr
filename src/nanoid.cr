@@ -44,6 +44,7 @@ module Nanoid
   # Generate secure URL-friendly unique ID
   def self.complex_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
+    return alphabet * size if alphabet_size == 1
 
     # First, a bitmask is necessary to generate the ID. The bitmask makes bytes
     # values closer to the alphabet size. The bitmask calculates the closest

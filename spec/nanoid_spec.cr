@@ -80,4 +80,9 @@ describe Nanoid do
     id = Nanoid.generate(size: 12, alphabet: "1234567890abcdef")
     (id.size).should eq(12)
   end
+
+  it "generates with one-character alphabet" do
+    id = Nanoid.generate(size: 12, alphabet: "a")
+    id.should eq("a" * 12)
+  end
 end
