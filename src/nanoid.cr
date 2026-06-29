@@ -35,16 +35,6 @@ module Nanoid
   def self.non_secure_generate(size : Int32, alphabet : String) : String
     alphabet_size = alphabet.size
 
-    if alphabet.ascii_only?
-      return String.new(size) do |buffer|
-        size.times do |i|
-          buffer[i] = alphabet.byte_at(Random.rand(alphabet_size))
-        end
-
-        {size, size}
-      end
-    end
-
     String.build do |str|
       size.times do
         str << alphabet[Random.rand(alphabet_size)]
